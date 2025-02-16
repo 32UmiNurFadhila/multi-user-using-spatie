@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pendingOrders = Order::where('status', 'pending')->latest()->take(5)->get();
+        return view('admin.dashboard', compact('pendingOrders'));
     }
 }

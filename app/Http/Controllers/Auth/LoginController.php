@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
@@ -58,9 +59,9 @@ class LoginController extends Controller
 
         switch ($role) {
             case "customer":
-                return redirect()->intended('customer/dashboard')->with('success', 'Berhasil login!');
+                return redirect()->intended(RouteServiceProvider::CUSTOMER)->with('success', 'Berhasil login!');
             case "admin":
-                return redirect()->intended('admin/dashboard')->with('success', 'Berhasil login!');
+                return redirect()->intended(RouteServiceProvider::ADMIN)->with('success', 'Berhasil login!');
             default:
                 return redirect()->back()->withErrors("Ada yang salah");
         }
