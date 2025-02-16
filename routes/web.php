@@ -24,9 +24,10 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
     
     // 🔹 Kategori
     Route::resource('categories', CategoryController::class);
+    // Route::delete('/admin/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     // 🔹 Menu
-    Route::resource('menu', MenuController::class)->except(['create', 'edit', 'show']);
+    Route::resource('menu', MenuController::class)->except(['create', 'edit', 'show', 'delete']);
     Route::patch('menu/available/{menu}', [MenuController::class, 'available'])->name('menu.available');
     Route::patch('menu/unavailable/{menu}', [MenuController::class, 'unavailable'])->name('menu.unavailable');
 

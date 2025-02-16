@@ -13,9 +13,9 @@
                             <!-- Repeater Item Template (Item pertama tanpa tombol hapus) -->
                             <div data-repeater-item class="row mb-3 align-items-end repeater-item" id="item-0">
                                 <div class="col-md-8">
-                                    <label for="menu" class="mb-2">Menu</label>
+                                    <label for="menu" class="mb-2">Produk</label>
                                     <select class="form-control" name="repeater-group[0][menu_id]">
-                                        <option value="">Pilih Menu</option>
+                                        <option value="">Pilih Produk</option>
                                         @foreach ($menus as $menu)
                                             <option value="{{ $menu->id }}">{{ $menu->name }}</option>
                                         @endforeach
@@ -41,7 +41,7 @@
                         </div>
                         <button type="button" id="add-item" class="btn btn-info waves-effect waves-light">
                             <div class="d-flex align-items-center">
-                                Tambah menu lain
+                                Tambah produk lain
                                 <i class="ti ti-circle-plus ms-1 fs-5"></i>
                             </div>
                         </button>

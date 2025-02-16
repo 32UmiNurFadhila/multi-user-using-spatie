@@ -24,9 +24,9 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group mb-3">
-                                <label>Nama Barang <span class="text-danger">*</span></label>
+                                <label>Nama Produk <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control"
-                                    value="{{ old('name') }}" placeholder="Masukkan nama barang">
+                                    value="{{ old('name') }}" placeholder="Masukkan nama produk">
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -49,7 +49,7 @@
                             <div class="form-group mb-3">
                                 <label>Harga <span class="text-danger">*</span></label>
                                 <input type="number" name="price" class="form-control"
-                                    value="{{ old('price') }}" placeholder="Masukkan harga barang">
+                                    value="{{ old('price') }}" placeholder="Masukkan harga produk">
                                 @error('price')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -59,9 +59,9 @@
                         <!-- Ganti Input Status dengan Stok -->
                         <div class="col-lg-6">
                             <div class="form-group mb-3">
-                                <label>Stok Barang <span class="text-danger">*</span></label>
+                                <label>Stok Produk <span class="text-danger">*</span></label>
                                 <input type="number" name="stock" class="form-control"
-                                    value="{{ old('stock') }}" placeholder="Masukkan jumlah stok barang">
+                                    value="{{ old('stock') }}" placeholder="Masukkan jumlah stok produk">
                                 @error('stock')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -71,7 +71,7 @@
                         <div class="col-lg-12">
                             <div class="form-group mb-3" style="position: relative;">
                                 <label>Deskripsi <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control" rows="3" placeholder="Masukkan deskripsi barang">{{ old('description') }}</textarea>
+                                <textarea name="description" class="form-control" rows="3" placeholder="Masukkan deskripsi produk">{{ old('description') }}</textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

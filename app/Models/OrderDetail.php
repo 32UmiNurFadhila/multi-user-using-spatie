@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderDetail extends Model
 {
-    use HasFactory, SoftDeletes; // Diletakkan dalam satu baris
+    use HasFactory; // Diletakkan dalam satu baris
 
     protected $fillable = [
         'order_id',

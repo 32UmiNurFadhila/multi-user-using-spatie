@@ -10,17 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -51,8 +40,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'alamat' => ['required', 'max:1000', ],
-            'no_tlp' => ['required', 'numeric', ],
+            'alamat' => ['required', 'max:1000'],
+            'no_tlp' => ['nullable', 'numeric'], // Dibuat nullable agar tidak wajib diisi
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,13 +54,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user =User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'alamat' => $data['alamat'], // Tambahkan alamat
+            'no_tlp' => $data['no_tlp'] ?? null, // Pastikan "no_tlp" masuk ke database
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->assignRole('customer');
+        $user->assignRole('customer'); // Memberikan role "customer"
         return $user;
     }
 }

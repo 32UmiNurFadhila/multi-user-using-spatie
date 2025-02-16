@@ -17,8 +17,12 @@ return new class extends Migration
             $table->text('description');
             $table->string('image');
             $table->integer('price');
-            $table->enum('status', ['tersedia', 'kosong']);
+            $table->enum('status', ['tersedia', 'kosong'])->default('tersedia');
+            $table->unsignedBigInteger('category_id'); // Tambah kolom kategori
             $table->timestamps();
+
+            // Menambahkan foreign key
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

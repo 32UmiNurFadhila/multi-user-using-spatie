@@ -115,47 +115,12 @@ class MenuController extends Controller
         }
     }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  */
-    // public function destroy(Menu $menu)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         Storage::disk('public')->delete($menu->image);
-    //         $menu->delete();
-    //         DB::commit();
+    public function destroy($id)
+    {
+        $menu = Menu::findOrFail($id); // Cari menu berdasarkan ID
+        $menu->delete(); // Hapus menu
 
-    //         return redirect()->back()->with('success', 'Barang berhasil dihapus');
-    //     } catch (\Throwable $th) {
-    //         DB::rollBack();
-    //         return redirect()->back()->with('error', 'Barang gagal dihapus: ' . $th->getMessage());
-    //     }
-    // }
+        return redirect()->route('admin.menu.index')->with('success', 'Menu berhasil dihapus.');
+    }
 
-    // public function available(Menu $menu)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         $menu->update(['status' => 'tersedia']);
-    //         DB::commit();
-    //         return redirect()->back()->with('success', 'Status menu diubah menjadi "tersedia"');
-    //     } catch (\Throwable $th) {
-    //         DB::rollBack();
-    //         return redirect()->back()->with('error', 'Gagal mengubah status menu: ' . $th->getMessage());
-    //     }
-    // }
-
-    // public function unavailable(Menu $menu)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         $menu->update(['status' => 'kosong']);
-    //         DB::commit();
-    //         return redirect()->back()->with('success', 'Status menu diubah menjadi "kosong"');
-    //     } catch (\Throwable $th) {
-    //         DB::rollBack();
-    //         return redirect()->back()->with('error', 'Gagal mengubah status menu: ' . $th->getMessage());
-    //     }
-    // }
 }

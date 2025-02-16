@@ -60,7 +60,7 @@
                             <iconify-icon icon="solar:bookmark-square-minimalistic-bold-duotone"
                                 class="fs-6"></iconify-icon>
                         </span>
-                        <span class="hide-menu">Daftar menu</span>
+                        <span class="hide-menu">Daftar Produk</span>
                     </a>
                 </li>
             @endif

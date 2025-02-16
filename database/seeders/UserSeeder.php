@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -25,6 +24,8 @@ class UserSeeder extends Seeder
                     'email' => str_replace(' ', '', $role['name']) . "@gmail.com",
                     'email_verified_at' => now(),
                     'password' => bcrypt('password'),
+                    'no_tlp' => '081234567890', 
+                    'alamat' => 'Jl. Contoh No. 123', 
                 ]);
 
             $user->assignRole($role);

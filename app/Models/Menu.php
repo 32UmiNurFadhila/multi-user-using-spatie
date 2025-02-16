@@ -12,9 +12,7 @@ class Menu extends Model
     use HasFactory;
 
     // Pastikan semua atribut yang diperlukan bisa diisi
-    protected $fillable = [
-        'name', 'description', 'image', 'price', 'category_id', 'stock'
-    ];
+    protected $fillable = ['name', 'price', 'category_id', 'stock', 'image', 'description'];
 
     /**
      * Relasi ke OrderDetail (satu menu bisa ada di banyak order detail)
