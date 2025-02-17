@@ -34,9 +34,9 @@ class MenuController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:1|max:10000000',
             'category_id' => 'required',
-            'stock' => 'required|integer',
+            'stock' => 'required|integer|min:1|max:10000000',
             'image' => 'image|mimes:jpeg,png,jpg|max:2048',
             'description' => 'nullable|string'
         ]);
@@ -85,9 +85,9 @@ class MenuController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:1|max:10000000',
             'category_id' => 'required|exists:categories,id',
-            'stock' => 'required|integer',
+            'stock' => 'required|integer|min:1|max:10000000',
             'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
             'description' => 'nullable|string'
         ]);

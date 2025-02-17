@@ -14,7 +14,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Menu</th>
+                            <th>Produk</th>
                             <th>Harga</th>
                             <th>Jumlah</th>
                             <th>Subtotal</th>

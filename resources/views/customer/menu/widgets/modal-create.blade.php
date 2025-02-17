@@ -41,7 +41,7 @@
                         </div>
                         <button type="button" id="add-item" class="btn btn-info waves-effect waves-light">
                             <div class="d-flex align-items-center">
-                                Tambah produk lain
+                            tambah produk lain
                                 <i class="ti ti-circle-plus ms-1 fs-5"></i>
                             </div>
                         </button>
