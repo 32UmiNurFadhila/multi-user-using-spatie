@@ -66,13 +66,17 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
 
-        if (!$category) {
-            return redirect()->route('categories.index')->with('error', 'Kategori tidak ditemukan.');
+        // Periksa apakah kategori sudah digunakan dalam produk
+        if ($category->products()->count() > 0) {
+            return redirect()->route('admin.categories.index')->with('error', 'Kategori tidak bisa dihapus karena masih digunakan dalam produk.');
         }
 
+        // Jika tidak ada produk yang menggunakan kategori, hapus kategori
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus.');
+
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus!');
     }
+
 }

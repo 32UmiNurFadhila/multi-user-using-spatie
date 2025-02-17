@@ -32,6 +32,13 @@ class OrderController extends Controller
                 $menu_id = $group['menu_id'];
                 $menu = Menu::findOrFail($menu_id);
 
+                // Cek apakah jumlah yang diminta lebih banyak dari stok yang tersedia
+                if ($group['quantity'] > $menu->stock) {
+                    return redirect()->back()
+                        ->withErrors(['quantity' => 'Jumlah yang diminta melebihi stok yang tersedia. Maksimal jumlah: ' . $menu->stock])
+                        ->withInput();
+                }
+
                 OrderDetail::create([
                     'order_id' => $order->id,
                     'menu_id' => $menu->id,
@@ -46,7 +53,7 @@ class OrderController extends Controller
             return redirect()->route('pending.show', $order->id)->with('success', 'Pesanan berhasil dibuat!');
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Pesanan gagal dibuat! '.$th->getMessage());
+            return redirect()->back()->with('error', 'Pesanan gagal dibuat! ' . $th->getMessage());
         }
     }
 
@@ -84,7 +91,7 @@ class OrderController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Pesanan gagal dibayar! '.$th->getMessage());
+            return redirect()->back()->with('error', 'Pesanan gagal dibayar! ' . $th->getMessage());
         }
     }
 

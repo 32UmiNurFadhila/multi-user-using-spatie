@@ -35,10 +35,10 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('assets/images/logos/foodie.png') }}" alt=""
+                                    <img src="{{ asset('assets/images/logos/grostor.png') }}" alt=""
                                         width="30%" />
                                 </a>
-                                <p class="text-center">The Best Resto</p>
+                                <p class="text-center">Toko Sembako Grostor</p>
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="mb-3">

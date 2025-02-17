@@ -10,14 +10,14 @@
                 <div class="modal-body">
                     <div class="order-repeater mb-3">
                         <div data-repeater-list="repeater-group" id="repeater-list">
-                            <!-- Repeater Item Template (Item pertama tanpa tombol hapus) -->
+                            <!-- Repeater Item Template -->
                             <div data-repeater-item class="row mb-3 align-items-end repeater-item" id="item-0">
                                 <div class="col-md-8">
                                     <label for="menu" class="mb-2">Produk</label>
-                                    <select class="form-control" name="repeater-group[0][menu_id]">
+                                    <select class="form-control" name="repeater-group[0][menu_id]" onchange="checkStock(0)">
                                         <option value="">Pilih Produk</option>
                                         @foreach ($menus as $menu)
-                                            <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                                            <option value="{{ $menu->id }}" data-stock="{{ $menu->stock }}">{{ $menu->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('repeater-group.*.menu_id')
@@ -26,13 +26,13 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="quantity" class="mb-2">Jumlah</label>
-                                    <input type="number" name="repeater-group[0][quantity]" class="form-control" min="1" value="1"/>
+                                    <input type="number" name="repeater-group[0][quantity]" class="form-control" min="1" value="1" id="quantity-0" oninput="checkStock(0)"/>
                                     @error('repeater-group.*.quantity')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
+                                    <div id="stock-warning-0" class="text-danger d-none">Jumlah melebihi stok yang tersedia!</div>
                                 </div>
                                 <div class="col-md-1">
-                                    <!-- Tombol hapus hanya akan ada pada item setelah pertama -->
                                     <button type="button" class="btn btn-sm btn-danger remove-item d-none rounded-3 p-2">
                                         <i class="ti ti-circle-x fs-5"></i>
                                     </button>
@@ -59,9 +59,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn waves-effect waves-light btn-rounded btn-danger" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-rounded btn-primary">Buat pesanan</button>
+                    <button type="submit" class="btn btn-rounded btn-primary" id="submit-order">Buat pesanan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    // Fungsi untuk mengecek apakah jumlah yang dimasukkan melebihi stok
+    function checkStock(index) {
+        let quantityInput = document.querySelector(`input[name="repeater-group[${index}][quantity]"]`);
+        let productSelect = document.querySelector(`select[name="repeater-group[${index}][menu_id]"]`);
+        let stockWarning = document.getElementById(`stock-warning-${index}`);
+        let stock = productSelect.options[productSelect.selectedIndex].getAttribute('data-stock');
+        
+        // Jika jumlah lebih besar dari stok, tampilkan peringatan
+        if (quantityInput.value > stock) {
+            stockWarning.classList.remove('d-none');
+            document.getElementById('submit-order').disabled = true; // Disable submit button
+        } else {
+            stockWarning.classList.add('d-none');
+            document.getElementById('submit-order').disabled = false; // Enable submit button
+        }
+    }
+</script>
